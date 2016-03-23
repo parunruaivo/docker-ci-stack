@@ -1,6 +1,6 @@
 version: '2'
 
-ci:
+services:
   jenkins:
     build: ./jenkins
     restart: always
@@ -21,8 +21,6 @@ ci:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://database:5432/sonar
     ports:
       - "9000"
-
-database:
   db:
     image: postgres:9.5
     restart: always
@@ -32,5 +30,9 @@ database:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres123
     volumes:
-        - ./database/:/var/lib/postgresql
+        - sonar-volume:/var/lib/postgresql
         - ./sonar/init-sonar-db.sh:/docker-entrypoint-initdb.d/init-sonar-db.sh
+
+volumes:
+    sonar-volume:
+        driver: local
