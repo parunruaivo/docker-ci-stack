@@ -3,6 +3,7 @@ version: '2'
 services:
   nginx:
     build: ./nginx
+    restart: always
     links:
       - sonarqube
       - jenkins
@@ -11,6 +12,7 @@ services:
 
   jenkins:
     build: ./jenkins
+    restart: always
     expose:
       - "8080"
       - "50000"
@@ -30,6 +32,7 @@ services:
       - "9092"
   db:
     image: postgres:9.5
+    restart: always
     hostname: db
     expose:
       - "5432"
