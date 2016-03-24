@@ -4,8 +4,8 @@ FROM jenkins:1.642.2
 USER root
 
 ENV JENKINS_USER jenkins
-RUN usermod --uid 197610 $JENKINS_USER
-RUN groupmod --gid 197610 $JENKINS_USER
+RUN usermod --uid 1000 $JENKINS_USER
+RUN groupmod --gid 1000 $JENKINS_USER
 RUN chown -R $JENKINS_USER:$JENKINS_USER "$JENKINS_HOME" /usr/share/jenkins/ref
 
 # restore ENTRYPOINT to startup as jenkins user
