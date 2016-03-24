@@ -1,4 +1,4 @@
-msbuild:1.25
 subversion:2.5.7
 sonar:2.3
 slack:2.0.1
+msbuild:1.25

@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
-    CREATE USER sonar;
+gosu postgres psql -v ON_ERROR_STOP=1 --username postgres <<-EOSQL
     CREATE DATABASE sonar;
+    CREATE USER sonar;
     GRANT ALL PRIVILEGES ON DATABASE sonar TO sonar;
 EOSQL
