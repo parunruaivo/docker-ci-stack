@@ -1,3 +1,4 @@
+nodelabelparameter:1.7.1
 subversion:2.5.7
 sonar:2.3
 slack:2.0.1
