@@ -18,7 +18,7 @@ services:
       - ./jenkins/jenkins_home:/var/jenkins_home
 
   sonarqube:
-    image: sonarqube:5.1
+    build: ./sonar
     links:
         - db
     environment:
