@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.7">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://cidsrepositorio.frc.utn.edu.ar:8387/svn/EncodeMS/6 Ingenieria de Producto/6.3 Desarrollo/Fuente/MercadoSeguro</remote>
+        <credentialsId>d3b112e6-9391-4dc1-b568-5d7f7c1dc879</credentialsId>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>true</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+  </scm>
+  <assignedNode>ws-slave</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.sonar.MsBuildSQRunnerBegin plugin="sonar@2.3">
+      <projectKey>MercadoSeguro</projectKey>
+      <projectName>Mercado Seguro</projectName>
+      <projectVersion>12.0</projectVersion>
+      <additionalArguments></additionalArguments>
+    </hudson.plugins.sonar.MsBuildSQRunnerBegin>
+    <hudson.tasks.BatchFile>
+      <command>C:\NuGet\nuget.exe restore &quot;C:\Jenkins\workspace\ms-build\MercadoSeguro.sln&quot;</command>
+    </hudson.tasks.BatchFile>
+    <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.25">
+      <msBuildName>ms-build</msBuildName>
+      <msBuildFile>MercadoSeguro.sln</msBuildFile>
+      <cmdLineArgs> /p:VisualStudioVersion=12.0</cmdLineArgs>
+      <buildVariablesAsProperties>true</buildVariablesAsProperties>
+      <continueOnBuildFailure>false</continueOnBuildFailure>
+      <unstableIfWarnings>false</unstableIfWarnings>
+    </hudson.plugins.msbuild.MsBuildBuilder>
+    <hudson.plugins.sonar.MsBuildSQRunnerEnd plugin="sonar@2.3"/>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
