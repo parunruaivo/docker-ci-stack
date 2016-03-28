@@ -9,13 +9,14 @@ services:
       - jenkins
     ports:
       - "80:80"
-      - "50000:50000"
   jenkins:
     build: ./jenkins
     restart: always
     expose:
       - "8080"
       - "50000"
+    ports:
+      - "50000:50000"
     volumes:
       - ./jenkins/jenkins_home:/var/jenkins_home
 
