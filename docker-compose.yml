@@ -14,7 +14,6 @@ services:
     restart: always
     expose:
       - "8080"
-      - "50000"
     ports:
       - "50000:50000"
     volumes:
