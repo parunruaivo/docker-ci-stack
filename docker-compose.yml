@@ -1,20 +1,11 @@
 version: '2'
 
 services:
-  nginx:
-    build: ./nginx
-    restart: always
-    links:
-      - sonarqube
-      - jenkins
-    ports:
-      - "80:80"
   jenkins:
     build: ./jenkins
     restart: always
-    expose:
-      - "8080"
     ports:
+      - "108080:8080"
       - "50000:50000"
     volumes:
       - ./jenkins/jenkins_home:/var/jenkins_home
@@ -27,16 +18,14 @@ services:
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
       - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
-    expose:
-      - "9000"
     ports:
-      - "5432:5432"
+      - "19000:9000"
   db:
     image: postgres:9.5
     restart: always
     hostname: db
-    expose:
-      - "5432"
+    ports:
+      - "5432:5432"
     volumes:
         - sonar-volume:/var/lib/postgresql
         - ./sonar/:/docker-entrypoint-initdb.d/
