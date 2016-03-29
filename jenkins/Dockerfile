@@ -1,6 +1,7 @@
 FROM jenkins:1.642.2
 
 COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
+COPY disable-slack-webhooks.groovy  /usr/share/jenkins/ref/init.groovy.d/disable-slack-webhooks.groovy
 
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
